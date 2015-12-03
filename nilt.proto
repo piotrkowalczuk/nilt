@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package nilt;
+
+message String {
+    string value = 1;
+    bool valid = 2;
+}
+
+message Int64 {
+    int64 value = 1;
+    bool valid = 2;
+}
+
+message Float64 {
+    double value = 1;
+    bool valid = 2;
+}
+
+message Bool {
+    bool value = 1;
+    bool valid = 2;
+}
