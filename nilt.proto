@@ -12,6 +12,16 @@ message Int64 {
     bool valid = 2;
 }
 
+message Uint32 {
+    uint32 value = 1;
+    bool valid = 2;
+}
+
+message Float32 {
+    float value = 1;
+    bool valid = 2;
+}
+
 message Float64 {
     double value = 1;
     bool valid = 2;

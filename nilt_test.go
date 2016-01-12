@@ -42,3 +42,59 @@ func TestInt64_ProtoMessage(t *testing.T) {
 		}
 	}
 }
+
+func TestUint32_Scan(t *testing.T) {
+	testUint32_Scan_success(t, nil, 0, false)
+}
+
+func TestUint32_Scan_string(t *testing.T) {
+	success := map[uint32]string{
+		100:        "100",
+		4294967295: "4294967295",
+		0:          "0",
+	}
+
+	for expected, given := range success {
+		testUint32_Scan_success(t, given, expected, true)
+	}
+}
+
+func TestUint32_Scan_int64(t *testing.T) {
+	success := map[uint32]int64{
+		100:        100,
+		4294967295: 4294967295,
+		0:          0,
+	}
+
+	for expected, given := range success {
+		testUint32_Scan_success(t, given, expected, true)
+	}
+}
+
+func TestUint32_Scan_bytes(t *testing.T) {
+	success := map[uint32][]byte{
+		100:        []byte("100"),
+		4294967295: []byte("4294967295"),
+		0:          []byte("0"),
+	}
+
+	for expected, given := range success {
+		testUint32_Scan_success(t, given, expected, true)
+	}
+}
+
+func testUint32_Scan_success(t *testing.T, given interface{}, expectedValue uint32, expectedValid bool) {
+	var u nilt.Uint32
+	if err := u.Scan(given); err != nil {
+		t.Errorf("unexpected error: %s", err.Error())
+		return
+	}
+
+	if u.Valid != expectedValid {
+		t.Error("wrong valid property value, got %b but expected %b", u.Valid, expectedValid)
+	}
+
+	if u.Uint32 != expectedValue {
+		t.Error("wrong uint32 property value, got %d but expected %d", u.Uint32, expectedValue)
+	}
+}
