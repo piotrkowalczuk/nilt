@@ -11,6 +11,10 @@ message Int64 {
     int64 value = 1;
     bool valid = 2;
 }
+message Int32 {
+    int32 value = 1;
+    bool valid = 2;
+}
 
 message Uint32 {
     uint32 value = 1;
