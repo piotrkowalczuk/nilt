@@ -180,7 +180,7 @@ func (i Int32) Value() (driver.Value, error) {
 	if !i.Valid {
 		return nil, nil
 	}
-	return i.Int32, nil
+	return int64(i.Int32), nil
 }
 
 // Scan implements the Scanner interface.
@@ -199,8 +199,8 @@ func (i *Int32) Scan(value interface{}) (err error) {
 	case string:
 		tmp, err = strconv.ParseInt(v, 10, 32)
 		i.Int32 = int32(tmp)
-	case int32:
-		i.Int32 = v
+	case int64:
+		i.Int32 = int32(v)
 	default:
 		err = fmt.Errorf("nilt: unsuported type (%T) passed to Int32.Scan", value)
 	}
@@ -263,8 +263,8 @@ func (i *Int) Scan(value interface{}) (err error) {
 	case string:
 		tmp, err = strconv.ParseInt(v, 10, 32)
 		i.Int = int(tmp)
-	case int:
-		i.Int = v
+	case int64:
+		i.Int = int(v)
 	default:
 		err = fmt.Errorf("nilt: unsuported type (%T) passed to Int.Scan", value)
 	}
