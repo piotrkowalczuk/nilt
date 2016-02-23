@@ -144,6 +144,27 @@ func (i *Int64) Scan(value interface{}) (err error) {
 	return
 }
 
+// MarshalJSON implements json.Marshaler interface.
+func (i *Int64) MarshalJSON() ([]byte, error) {
+	if !i.Valid {
+		return nil, nil
+	}
+
+	return json.Marshal(i.Int64)
+}
+
+// UnmarshalJSON implements json.Unmarshaler interface.
+func (i *Int64) UnmarshalJSON(data []byte) error {
+	if data == nil {
+		i.Int64, i.Valid = 0, false
+		return nil
+	}
+
+	i.Valid = true
+
+	return json.Unmarshal(data, &i.Int64)
+}
+
 func (i *Int64) Appear() bool {
 	return i != nil && i.Valid
 }
@@ -208,6 +229,27 @@ func (i *Int32) Scan(value interface{}) (err error) {
 	return
 }
 
+// MarshalJSON implements json.Marshaler interface.
+func (i *Int32) MarshalJSON() ([]byte, error) {
+	if !i.Valid {
+		return nil, nil
+	}
+
+	return json.Marshal(i.Int32)
+}
+
+// UnmarshalJSON implements json.Unmarshaler interface.
+func (i *Int32) UnmarshalJSON(data []byte) error {
+	if data == nil {
+		i.Int32, i.Valid = 0, false
+		return nil
+	}
+
+	i.Valid = true
+
+	return json.Unmarshal(data, &i.Int32)
+}
+
 func (i *Int32) Appear() bool {
 	return i != nil && i.Valid
 }
@@ -270,6 +312,27 @@ func (i *Int) Scan(value interface{}) (err error) {
 	}
 
 	return
+}
+
+// MarshalJSON implements json.Marshaler interface.
+func (i *Int) MarshalJSON() ([]byte, error) {
+	if !i.Valid {
+		return nil, nil
+	}
+
+	return json.Marshal(i.Int)
+}
+
+// UnmarshalJSON implements json.Unmarshaler interface.
+func (i *Int) UnmarshalJSON(data []byte) error {
+	if data == nil {
+		i.Int, i.Valid = 0, false
+		return nil
+	}
+
+	i.Valid = true
+
+	return json.Unmarshal(data, &i.Int)
 }
 
 func (i *Int) Appear() bool {
@@ -342,6 +405,27 @@ func (u *Uint32) Scan(value interface{}) (err error) {
 	return
 }
 
+// MarshalJSON implements json.Marshaler interface.
+func (u *Uint32) MarshalJSON() ([]byte, error) {
+	if !u.Valid {
+		return nil, nil
+	}
+
+	return json.Marshal(u.Uint32)
+}
+
+// UnmarshalJSON implements json.Unmarshaler interface.
+func (u *Uint32) UnmarshalJSON(data []byte) error {
+	if data == nil {
+		u.Uint32, u.Valid = 0, false
+		return nil
+	}
+
+	u.Valid = true
+
+	return json.Unmarshal(data, &u.Uint32)
+}
+
 func (u *Uint32) Appear() bool {
 	return u != nil && u.Valid
 }
@@ -406,6 +490,27 @@ func (f *Float32) Scan(value interface{}) (err error) {
 	return
 }
 
+// MarshalJSON implements json.Marshaler interface.
+func (f *Float32) MarshalJSON() ([]byte, error) {
+	if !f.Valid {
+		return nil, nil
+	}
+
+	return json.Marshal(f.Float32)
+}
+
+// UnmarshalJSON implements json.Unmarshaler interface.
+func (f *Float32) UnmarshalJSON(data []byte) error {
+	if data == nil {
+		f.Float32, f.Valid = 0, false
+		return nil
+	}
+
+	f.Valid = true
+
+	return json.Unmarshal(data, &f.Float32)
+}
+
 func (f *Float32) Appear() bool {
 	return f != nil && f.Valid
 }
@@ -467,6 +572,27 @@ func (f *Float64) Scan(value interface{}) (err error) {
 	return
 }
 
+// MarshalJSON implements json.Marshaler interface.
+func (f *Float64) MarshalJSON() ([]byte, error) {
+	if !f.Valid {
+		return nil, nil
+	}
+
+	return json.Marshal(f.Float64)
+}
+
+// UnmarshalJSON implements json.Unmarshaler interface.
+func (f *Float64) UnmarshalJSON(data []byte) error {
+	if data == nil {
+		f.Float64, f.Valid = 0, false
+		return nil
+	}
+
+	f.Valid = true
+
+	return json.Unmarshal(data, &f.Float64)
+}
+
 func (f *Float64) Appear() bool {
 	return f != nil && f.Valid
 }
@@ -526,6 +652,27 @@ func (b *Bool) Scan(value interface{}) (err error) {
 	}
 
 	return
+}
+
+// MarshalJSON implements json.Marshaler interface.
+func (b *Bool) MarshalJSON() ([]byte, error) {
+	if !b.Valid {
+		return nil, nil
+	}
+
+	return json.Marshal(b.Bool)
+}
+
+// UnmarshalJSON implements json.Unmarshaler interface.
+func (b *Bool) UnmarshalJSON(data []byte) error {
+	if data == nil {
+		b.Bool, b.Valid = false, false
+		return nil
+	}
+
+	b.Valid = true
+
+	return json.Unmarshal(data, &b.Bool)
 }
 
 func (b *Bool) Appear() bool {
