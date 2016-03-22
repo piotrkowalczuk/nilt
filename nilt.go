@@ -149,7 +149,7 @@ func (i *Int64) MarshalJSON() ([]byte, error) {
 	if i == nil || !i.Valid {
 		return []byte("null"), nil
 	}
-
+	
 	return json.Marshal(i.Int64)
 }
 
