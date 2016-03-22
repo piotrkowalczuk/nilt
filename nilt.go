@@ -36,8 +36,8 @@ func (s *String) StringOr(or string) string {
 
 // MarshalJSON implements json.Marshaler interface.
 func (ns *String) MarshalJSON() ([]byte, error) {
-	if !ns.Valid {
-		return nil, nil
+	if ns == nil || !ns.Valid {
+		return []byte("null"), nil
 	}
 
 	return json.Marshal(ns.String)
@@ -146,8 +146,8 @@ func (i *Int64) Scan(value interface{}) (err error) {
 
 // MarshalJSON implements json.Marshaler interface.
 func (i *Int64) MarshalJSON() ([]byte, error) {
-	if !i.Valid {
-		return nil, nil
+	if i == nil || !i.Valid {
+		return []byte("null"), nil
 	}
 
 	return json.Marshal(i.Int64)
@@ -231,8 +231,8 @@ func (i *Int32) Scan(value interface{}) (err error) {
 
 // MarshalJSON implements json.Marshaler interface.
 func (i *Int32) MarshalJSON() ([]byte, error) {
-	if !i.Valid {
-		return nil, nil
+	if i == nil || !i.Valid {
+		return []byte("null"), nil
 	}
 
 	return json.Marshal(i.Int32)
@@ -316,8 +316,8 @@ func (i *Int) Scan(value interface{}) (err error) {
 
 // MarshalJSON implements json.Marshaler interface.
 func (i *Int) MarshalJSON() ([]byte, error) {
-	if !i.Valid {
-		return nil, nil
+	if i == nil || !i.Valid {
+		return []byte("null"), nil
 	}
 
 	return json.Marshal(i.Int)
@@ -407,8 +407,8 @@ func (u *Uint32) Scan(value interface{}) (err error) {
 
 // MarshalJSON implements json.Marshaler interface.
 func (u *Uint32) MarshalJSON() ([]byte, error) {
-	if !u.Valid {
-		return nil, nil
+	if u == nil || !u.Valid {
+		return []byte("null"), nil
 	}
 
 	return json.Marshal(u.Uint32)
@@ -492,8 +492,8 @@ func (f *Float32) Scan(value interface{}) (err error) {
 
 // MarshalJSON implements json.Marshaler interface.
 func (f *Float32) MarshalJSON() ([]byte, error) {
-	if !f.Valid {
-		return nil, nil
+	if f == nil || !f.Valid {
+		return []byte("null"), nil
 	}
 
 	return json.Marshal(f.Float32)
@@ -574,8 +574,8 @@ func (f *Float64) Scan(value interface{}) (err error) {
 
 // MarshalJSON implements json.Marshaler interface.
 func (f *Float64) MarshalJSON() ([]byte, error) {
-	if !f.Valid {
-		return nil, nil
+	if f == nil || !f.Valid {
+		return []byte("null"), nil
 	}
 
 	return json.Marshal(f.Float64)
@@ -656,8 +656,8 @@ func (b *Bool) Scan(value interface{}) (err error) {
 
 // MarshalJSON implements json.Marshaler interface.
 func (b *Bool) MarshalJSON() ([]byte, error) {
-	if !b.Valid {
-		return nil, nil
+	if b == nil || !b.Valid {
+		return []byte("null"), nil
 	}
 
 	return json.Marshal(b.Bool)
