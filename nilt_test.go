@@ -40,52 +40,51 @@ func TestInt64_ProtoMessage(t *testing.T) {
 		}
 
 		if tmp.Valid != given.Valid {
-			t.Errorf("booleans are not equal expected %d, got %d", given.Valid, tmp.Valid)
+			t.Errorf("booleans are not equal expected %t, got %t", given.Valid, tmp.Valid)
 		}
 	}
 }
 
 func TestInt64_MarshalJSON(t *testing.T) {
 	cases := map[string]struct {
-		given *nilt.Int64
+		given    *nilt.Int64
 		expected string
 	}{
 
-
-		"nil":                        {
-			given: nil,
+		"nil": {
+			given:    nil,
 			expected: "null",
 		},
-		"zero value":                 {
-			given: &nilt.Int64{},
+		"zero value": {
+			given:    &nilt.Int64{},
 			expected: "null",
 		},
-		"valid":                      {
-			given: &nilt.Int64{Valid: true},
+		"valid": {
+			given:    &nilt.Int64{Valid: true},
 			expected: "0",
 		},
-		"invalid":                    {
-			given: &nilt.Int64{Valid: false},
+		"invalid": {
+			given:    &nilt.Int64{Valid: false},
 			expected: "null",
 		},
-		"non zero valid value":       {
-			given: &nilt.Int64{Int64: 123, Valid: true},
+		"non zero valid value": {
+			given:    &nilt.Int64{Int64: 123, Valid: true},
 			expected: "123",
 		},
-		"non zero valid max value":   {
-			given: &nilt.Int64{Int64: 9223372036854775807, Valid: true},
+		"non zero valid max value": {
+			given:    &nilt.Int64{Int64: 9223372036854775807, Valid: true},
 			expected: "9223372036854775807",
 		},
-		"non zero valid min value":   {
-			given: &nilt.Int64{Int64: -9223372036854775808, Valid: true},
+		"non zero valid min value": {
+			given:    &nilt.Int64{Int64: -9223372036854775808, Valid: true},
 			expected: "-9223372036854775808",
 		},
 		"non zero invalid max value": {
-			given: &nilt.Int64{Int64: 9223372036854775807, Valid: false},
+			given:    &nilt.Int64{Int64: 9223372036854775807, Valid: false},
 			expected: "null",
 		},
 		"non zero invalid min value": {
-			given: &nilt.Int64{Int64: -9223372036854775808, Valid: false},
+			given:    &nilt.Int64{Int64: -9223372036854775808, Valid: false},
 			expected: "null",
 		},
 	}
@@ -97,7 +96,7 @@ CasesLoop:
 			t.Errorf("%s: unexpected error: %s", d, err.Error())
 			continue CasesLoop
 		}
-		
+
 		if string(b) != c.expected {
 			t.Errorf("%s: wrong output, expected %s but got %s", d, c.expected, string(b))
 		} else {
@@ -106,7 +105,7 @@ CasesLoop:
 	}
 
 	type within struct {
-		ID *nilt.Int64	`json:"id"`
+		ID *nilt.Int64 `json:"id"`
 	}
 }
 
@@ -158,60 +157,59 @@ func testUint32_Scan_success(t *testing.T, given interface{}, expectedValue uint
 	}
 
 	if u.Valid != expectedValid {
-		t.Error("wrong valid property value, got %b but expected %b", u.Valid, expectedValid)
+		t.Errorf("wrong valid property value, got %t but expected %t", u.Valid, expectedValid)
 	}
 
 	if u.Uint32 != expectedValue {
-		t.Error("wrong uint32 property value, got %d but expected %d", u.Uint32, expectedValue)
+		t.Errorf("wrong uint32 property value, got %d but expected %d", u.Uint32, expectedValue)
 	}
 }
 
 func TestUint32_MarshalJSON(t *testing.T) {
 	cases := map[string]struct {
-		given *nilt.Uint32
+		given    *nilt.Uint32
 		expected string
 	}{
 
-
-		"nil":                        {
-			given: nil,
+		"nil": {
+			given:    nil,
 			expected: "null",
 		},
-		"zero value":                 {
-			given: &nilt.Uint32{},
+		"zero value": {
+			given:    &nilt.Uint32{},
 			expected: "null",
 		},
-		"valid":                      {
-			given: &nilt.Uint32{Valid: true},
+		"valid": {
+			given:    &nilt.Uint32{Valid: true},
 			expected: "0",
 		},
-		"invalid":                    {
-			given: &nilt.Uint32{Valid: false},
+		"invalid": {
+			given:    &nilt.Uint32{Valid: false},
 			expected: "null",
 		},
-		"non zero valid value":       {
-			given: &nilt.Uint32{Uint32: 123, Valid: true},
+		"non zero valid value": {
+			given:    &nilt.Uint32{Uint32: 123, Valid: true},
 			expected: "123",
 		},
-		"non zero valid max value":   {
-			given: &nilt.Uint32{Uint32: 4294967295, Valid: true},
+		"non zero valid max value": {
+			given:    &nilt.Uint32{Uint32: 4294967295, Valid: true},
 			expected: "4294967295",
 		},
-		"non zero valid min value":   {
-			given: &nilt.Uint32{Uint32: 0, Valid: true},
+		"non zero valid min value": {
+			given:    &nilt.Uint32{Uint32: 0, Valid: true},
 			expected: "0",
 		},
 		"non zero invalid max value": {
-			given: &nilt.Uint32{Uint32: 4294967295, Valid: false},
+			given:    &nilt.Uint32{Uint32: 4294967295, Valid: false},
 			expected: "null",
 		},
 		"non zero invalid min value": {
-			given: &nilt.Uint32{Uint32: 0, Valid: false},
+			given:    &nilt.Uint32{Uint32: 0, Valid: false},
 			expected: "null",
 		},
 	}
 
-	CasesLoop:
+CasesLoop:
 	for d, c := range cases {
 		b, err := json.Marshal(c.given)
 		if err != nil {
@@ -227,24 +225,23 @@ func TestUint32_MarshalJSON(t *testing.T) {
 	}
 
 	type within struct {
-		ID *nilt.Uint32	`json:"id"`
+		ID *nilt.Uint32 `json:"id"`
 	}
 }
 
-
 func TestBool_MarshalJSON(t *testing.T) {
 	cases := map[string]*nilt.Bool{
-		"nil":                        nil,
-		"zero value":                 &nilt.Bool{},
-		"valid":                      &nilt.Bool{Valid: true},
-		"invalid":                    &nilt.Bool{Valid: false},
-		"true true":       &nilt.Bool{Bool: true, Valid: true},
-		"true false":       &nilt.Bool{Bool: true, Valid: false},
-		"false false":       &nilt.Bool{Bool: false, Valid: false},
-		"false true":       &nilt.Bool{Bool: false, Valid: true},
+		"nil":         nil,
+		"zero value":  &nilt.Bool{},
+		"valid":       &nilt.Bool{Valid: true},
+		"invalid":     &nilt.Bool{Valid: false},
+		"true true":   &nilt.Bool{Bool: true, Valid: true},
+		"true false":  &nilt.Bool{Bool: true, Valid: false},
+		"false false": &nilt.Bool{Bool: false, Valid: false},
+		"false true":  &nilt.Bool{Bool: false, Valid: true},
 	}
 
-	SimpleLoop:
+SimpleLoop:
 	for d, c := range cases {
 		b, err := json.Marshal(c)
 		if err != nil {
@@ -256,10 +253,10 @@ func TestBool_MarshalJSON(t *testing.T) {
 	}
 
 	type within struct {
-		Exists *nilt.Bool	`json:"exists"`
+		Exists *nilt.Bool `json:"exists"`
 	}
 
-	WithinLoop:
+WithinLoop:
 	for d, c := range cases {
 		w := within{Exists: c}
 		b, err := json.Marshal(w)
